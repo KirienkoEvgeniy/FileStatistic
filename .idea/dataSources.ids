@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - contactdb@localhost" uuid="c534a95a-ea4a-4019-98b3-236656a27110">
+    <database-info product="MySQL" version="5.5.23" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
+    <database-model serializer="dbm" rdbms="MYSQL" format-version="2.5">
+      <schema id="1" name="contactdb"/>
+      <table id="2" parent="1" name="statfile"/>
+      <table id="3" parent="1" name="statrow"/>
+      <column id="4" parent="2" name="id">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)</data-type>
+        <default-expression>&apos;&apos;</default-expression>
+      </column>
+      <column id="5" parent="2" name="name">
+        <mandatory>1</mandatory>
+        <data-type>char(50)</data-type>
+      </column>
+      <column id="6" parent="2" name="maxf">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="7" parent="2" name="minf">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="8" parent="2" name="averf">
+        <mandatory>1</mandatory>
+        <data-type>float(10,3)</data-type>
+      </column>
+      <column id="9" parent="2" name="lenghtfile">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <key id="10" parent="2" name="PRIMARY">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="11" parent="3" name="id_row">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="12" parent="3" name="id">
+        <data-type>varchar(100)</data-type>
+      </column>
+      <column id="13" parent="3" name="maxWordr">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="14" parent="3" name="minWordr">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="15" parent="3" name="averWordr">
+        <mandatory>1</mandatory>
+        <data-type>float(10,3)</data-type>
+      </column>
+      <column id="16" parent="3" name="lenghtrow">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <key id="17" parent="3" name="PRIMARY">
+        <columns>id_row</columns>
+        <primary>1</primary>
+      </key>
+    </database-model>
+  </data-source>
+</component>

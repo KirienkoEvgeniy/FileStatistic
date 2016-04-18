@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="mysql-5.1.10">
+    <CLASSES>
+      <root url="jar://D:/NewJava/mysql-5.1.10.jar/mysql-5.1.10.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
