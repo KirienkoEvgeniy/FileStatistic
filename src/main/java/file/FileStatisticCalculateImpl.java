@@ -19,18 +19,20 @@ public class FileStatisticCalculateImpl implements IFileStatisticCalculate {
         File[] list = root.listFiles();
         if (list == null)
             return result;
-        for (File f : list) {
-            if (f.isDirectory()) {
-                getTxtFiles(f.getAbsolutePath());
+        for (File file : list) {
+            if (file.isDirectory()) {
+              System.out.println(getTxtFiles(file.getPath()));
             } else {
-                String m = f.getName();
+                String m = file.getName();
                 if (m.endsWith(".txt")) {
-                    result.add(f);
+                    result.add(file);
+                    System.out.println(result);
                 }
             }
         }
+
         return result;
-    }
+     }
 
     /**
      * Подсчёт статистики по файлу
@@ -54,12 +56,12 @@ public class FileStatisticCalculateImpl implements IFileStatisticCalculate {
                 maxf.add(line.getMax().length());
                 minf.add(line.getMin().length());
         }
-        if (countLines > 0) {
-            averfile = averf / countLines;
-        }
+//        if (countLines > 0) {
+//            averfile = averf / countLines;
+//        }
         result.setMinfile(Collections.min(minf));
         result.setMaxfile(Collections.max(maxf));
-        result.setAverfile(averfile);
+        result.setAverfile(averf);
         result.setLenghtFile(lenghtFile);
 
         return result;

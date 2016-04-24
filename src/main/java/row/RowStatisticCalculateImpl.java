@@ -35,8 +35,10 @@ public class RowStatisticCalculateImpl implements IRowStatisticCalculate {
                 count++;
                 if (max.length() < word.length())
                     max = word;
+//                System.out.println(max);
                 if (min.length() > word.length())
                     min = word;
+//                System.out.println(min);
             }
             if (count > 0) {
                 average = sum / count;
