@@ -13,24 +13,21 @@ public class FileStatisticCalculateImpl implements IFileStatisticCalculate {
      * @param path путь к директории
      */
     @Override
-    public List<File> getTxtFiles(String path) {
-        List<File> result = new ArrayList<File>();
+    public List<File> getTxtFiles(List<File> result, String path) {
         File root = new File(path);
         File[] list = root.listFiles();
         if (list == null)
             return result;
         for (File file : list) {
             if (file.isDirectory()) {
-              System.out.println(getTxtFiles(file.getPath()));
+                getTxtFiles(result, file.getAbsolutePath());
             } else {
                 String m = file.getName();
                 if (m.endsWith(".txt")) {
                     result.add(file);
-                    System.out.println(result);
                 }
             }
         }
-
         return result;
      }
 

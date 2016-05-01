@@ -6,11 +6,15 @@ import row.RowStatistic;
 import row.RowStatisticCalculateImpl;
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.charset.Charset;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
@@ -21,7 +25,7 @@ public class Calculation {
     private static final String password = "admin";
     private static Charset charset = Charset.forName("ISO-8859-1");
     private static final String queryFile = "INSERT INTO statfile (id, name, maxf, minf, averf, lenghtfile) VALUES (?, ?, ?, ?, ?, ?);";
-    private static final String queryRow = "INSERT INTO statRow (ID, maxwordr, minwordr, averwordr, lenghtrow) VALUES (?, ?, ?, ?, ?)";
+    private static final String queryRow = "INSERT INTO statrow (ID, maxwordr, minwordr, averwordr, lenghtrow) VALUES (?, ?, ?, ?, ?)";
     private static AtomicLong ref = new AtomicLong(System.currentTimeMillis());
     private static String DEFAULT_REFERENCE = "0000000000000";
 
@@ -34,7 +38,7 @@ public class Calculation {
             stmt.setInt(5, statistic.getLineLenght());
             stmt.addBatch();
         }
-        stmt.executeUpdate();
+        stmt.executeBatch();
     }
 
     private static void statFile(PreparedStatement stmtf, String newID, String fileName, FileStatistic fileStatistic) throws SQLException {
@@ -57,16 +61,20 @@ public class Calculation {
                 Class.forName("com.mysql.jdbc.Driver");
                 connection = DriverManager.getConnection(url, user, password);
             } catch (ClassNotFoundException | SQLException e) {
-                e.printStackTrace();
+                System.out.println("Не установлено соединение с БД");
             }
 
-            List<File> files = fileStatisticCalculate.getTxtFiles("D:\\Test");
+            List<File> files = new ArrayList<File>();
+            fileStatisticCalculate.getTxtFiles(files, "D:\\Test");
+
             for (File file : files) {
-                String newID = Long.toString(ref.getAndIncrement(), 36)
+                System.out.println(file);
+               String newID = Long.toString(ref.getAndIncrement(), 36)
                         .toUpperCase();
                 newID=DEFAULT_REFERENCE.replace(
                         DEFAULT_REFERENCE.substring(0,newID.length()),
                         newID);
+
                 List<RowStatistic> rowStatistics = new LinkedList<>();
                 FileStatistic fileStatistic = null;
                 try {
@@ -97,7 +105,7 @@ public class Calculation {
                     connection.close();
                 }
             } catch (SQLException e) {
-                e.printStackTrace();
+                System.out.println("Connection is not close");
             }
         }
 

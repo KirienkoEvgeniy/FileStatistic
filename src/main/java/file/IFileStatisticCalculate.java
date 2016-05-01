@@ -12,9 +12,10 @@ public interface IFileStatisticCalculate {
 
     /**
      * Получение списка текстовых файлов
+     * @param result список текстовых файлов - результат работы метода
      * @param path путь к директории
      */
-    public List<File> getTxtFiles(String path);
+    public List<File> getTxtFiles(List<File> result, String path);
 
     /**
      * Подсчёт статистики по файлу
